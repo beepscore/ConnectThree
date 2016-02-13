@@ -63,6 +63,12 @@ public class GameControllerTest extends ApplicationTestCase<Application> {
         assertTrue(gameController.isBoardFull(game));
     }
 
+    public void testIsGameWonInAnyColumnBoardEmpty() {
+        Board board = new Board(3, 3);
+
+        assertFalse(GameController.isGameWonInAnyColumn(board));
+    }
+
     public void testIsGameWonInColumnBoardEmpty() {
         Board board = new Board(3, 3);
 
