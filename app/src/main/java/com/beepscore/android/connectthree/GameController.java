@@ -117,4 +117,14 @@ public class GameController {
         return true;
     }
 
+    static boolean isGameWonInAnyDiagonal(Board board) {
+
+        if (isGameWonInDiagonalSlopeNegative(board)
+                || isGameWonInDiagonalSlopePositive(board)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
