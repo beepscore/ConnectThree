@@ -185,4 +185,26 @@ public class GameControllerTest extends ApplicationTestCase<Application> {
         assertFalse(GameController.isGameWonInDiagonalSlopeNegative(board));
     }
 
+    public void testIsGameWonInDiagonalSlopeNegativeFalse() {
+        Board board = new Board(3, 3);
+
+        BoardPiece boardPieceMoe = new BoardPiece("Moe", null);
+        board.boardPieces[0][2] = boardPieceMoe;
+        board.boardPieces[1][1] = boardPieceMoe;
+        board.boardPieces[2][0] = boardPieceMoe;
+
+        assertFalse(GameController.isGameWonInDiagonalSlopeNegative(board));
+    }
+
+    public void testIsGameWonInDiagonalSlopeNegativeTrue() {
+        Board board = new Board(3, 3);
+
+        BoardPiece boardPieceMoe = new BoardPiece("Moe", null);
+        board.boardPieces[0][0] = boardPieceMoe;
+        board.boardPieces[1][1] = boardPieceMoe;
+        board.boardPieces[2][2] = boardPieceMoe;
+
+        assertTrue(GameController.isGameWonInDiagonalSlopeNegative(board));
+    }
+
 }
