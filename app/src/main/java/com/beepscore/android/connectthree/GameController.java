@@ -129,4 +129,15 @@ public class GameController {
         }
     }
 
+    static boolean isGameWon(Board board) {
+
+        if (isGameWonInAnyDiagonal(board)
+                || isGameWonInAnyColumn(board)
+                || isGameWonInAnyRow(board)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

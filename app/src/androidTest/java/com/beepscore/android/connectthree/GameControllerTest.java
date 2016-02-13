@@ -263,4 +263,40 @@ public class GameControllerTest extends ApplicationTestCase<Application> {
         assertTrue(GameController.isGameWonInDiagonalSlopePositive(board));
     }
 
+    public void testIsGameWonBoardEmpty() {
+        Board board = new Board(3, 3);
+
+        assertFalse(GameController.isGameWon(board));
+    }
+
+    public void testIsGameWonFalse() {
+        Board board = new Board(3, 3);
+
+        BoardPiece boardPieceMoe = new BoardPiece("Moe", null);
+        BoardPiece boardPieceLarry = new BoardPiece("Larry", null);
+
+        board.boardPieces[0][0] = boardPieceMoe;
+        board.boardPieces[0][1] = boardPieceLarry;
+        board.boardPieces[1][1] = boardPieceMoe;
+        board.boardPieces[1][2] = boardPieceLarry;
+        board.boardPieces[2][1] = boardPieceMoe;
+
+        assertFalse(GameController.isGameWon(board));
+    }
+
+    public void testIsGameWonTrue() {
+        Board board = new Board(3, 3);
+
+
+        BoardPiece boardPieceMoe = new BoardPiece("Moe", null);
+        BoardPiece boardPieceLarry = new BoardPiece("Larry", null);
+
+        board.boardPieces[0][0] = boardPieceMoe;
+        board.boardPieces[0][1] = boardPieceLarry;
+        board.boardPieces[1][1] = boardPieceMoe;
+        board.boardPieces[1][2] = boardPieceLarry;
+        board.boardPieces[2][2] = boardPieceMoe;
+
+        assertTrue(GameController.isGameWon(board));
+    }
 }
