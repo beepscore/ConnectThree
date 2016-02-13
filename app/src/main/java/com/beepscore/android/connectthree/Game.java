@@ -12,13 +12,9 @@ import java.util.List;
  */
 public class Game {
 
-    final static int numberOfRows = 3;
-    final static int numberOfColumns = 3;
-    // On the board, each row, column position may be null
-    BoardPiece [][] board = new BoardPiece [numberOfRows][numberOfColumns] ;
-
     // final makes fields act like "read only" properties
     // http://binkley.blogspot.com/2005/01/read-only-properties-in-java.html
+    final Board board;
     final List<Player> players;
 
     // Chess games are recorded as a list of moves, so use it for tic-tac-toe.
@@ -28,7 +24,8 @@ public class Game {
 
     // constructor
     // must initialize any final fields here, can't set them later
-    public Game(List<Player> players) {
+    public Game(Board board, List<Player> players) {
+        this.board = board;
         this.players = players;
     }
 
