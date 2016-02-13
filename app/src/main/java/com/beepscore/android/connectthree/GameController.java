@@ -72,4 +72,25 @@ public class GameController {
         return true;
     }
 
+    /**
+     * Assumes board is square, numberOfRows == numberOfColumns
+     * @param board
+     * @return true if diagonal from 0,0 to numberOfRows, numberOfColumns
+     * contains boardPieces from a single player
+     */
+    static boolean isGameWonInDiagonalSlopeNegative(Board board) {
+
+        BoardPiece boardPiece0 = board.boardPieces[0][0];
+        for (int index = 0; index < board.numberOfRows; index++) {
+            BoardPiece currentBoardPiece = board.boardPieces[index][index];
+            if (currentBoardPiece == null) {
+                return false;
+            }
+            if (currentBoardPiece != boardPiece0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

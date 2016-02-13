@@ -179,4 +179,10 @@ public class GameControllerTest extends ApplicationTestCase<Application> {
         assertTrue(GameController.isGameWonInRow(board, 1));
     }
 
+    public void testIsGameWonInDiagonalSlopeNegativeBoardEmpty() {
+        Board board = new Board(3, 3);
+
+        assertFalse(GameController.isGameWonInDiagonalSlopeNegative(board));
+    }
+
 }
