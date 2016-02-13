@@ -92,6 +92,35 @@ public class GameControllerTest extends ApplicationTestCase<Application> {
         assertTrue(GameController.isGameWonInAnyColumn(board));
     }
 
+    public void testIsGameWonInAnyRowBoardEmpty() {
+        Board board = new Board(3, 3);
+
+        assertFalse(GameController.isGameWonInAnyRow(board));
+    }
+
+    public void testIsGameWonInAnyRowFalse() {
+        Board board = new Board(3, 3);
+
+        BoardPiece boardPieceMoe = new BoardPiece("Moe", null);
+        BoardPiece boardPieceLarry = new BoardPiece("Larry", null);
+        board.boardPieces[2][0] = boardPieceMoe;
+        board.boardPieces[2][1] = boardPieceLarry;
+        board.boardPieces[2][2] = boardPieceMoe;
+
+        assertFalse(GameController.isGameWonInAnyRow(board));
+    }
+
+    public void testIsGameWonInAnyRowTrue() {
+        Board board = new Board(3, 3);
+
+        BoardPiece boardPieceMoe = new BoardPiece("Moe", null);
+        board.boardPieces[1][0] = boardPieceMoe;
+        board.boardPieces[1][1] = boardPieceMoe;
+        board.boardPieces[1][2] = boardPieceMoe;
+
+        assertTrue(GameController.isGameWonInAnyRow(board));
+    }
+
     public void testIsGameWonInColumnBoardEmpty() {
         Board board = new Board(3, 3);
 

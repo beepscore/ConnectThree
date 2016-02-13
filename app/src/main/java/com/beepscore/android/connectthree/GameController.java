@@ -24,8 +24,18 @@ public class GameController {
 
     static boolean isGameWonInAnyColumn(Board board) {
 
+        for (int columnNumber = 0; columnNumber < board.numberOfColumns; columnNumber++) {
+            if (isGameWonInColumn(board, columnNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    static boolean isGameWonInAnyRow(Board board) {
+
         for (int rowNumber = 0; rowNumber < board.numberOfRows; rowNumber++) {
-            if (isGameWonInColumn(board, rowNumber)) {
+            if (isGameWonInRow(board, rowNumber)) {
                 return true;
             }
         }
