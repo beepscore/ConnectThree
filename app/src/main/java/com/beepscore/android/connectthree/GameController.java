@@ -45,6 +45,8 @@ public class GameController {
     static boolean isGameWonInColumn(Board board, int columnNumber) {
 
         BoardPiece boardPiece0 = board.boardPieces[0][columnNumber];
+        // loop does one unnecessary revisit of boardPiece0.
+        // However loop indices are clear to programmer, so don't optimize further.
         for (int rowNumber = 0; rowNumber < board.numberOfRows; rowNumber++) {
             BoardPiece currentBoardPiece = board.boardPieces[rowNumber][columnNumber];
             if (currentBoardPiece == null) {
