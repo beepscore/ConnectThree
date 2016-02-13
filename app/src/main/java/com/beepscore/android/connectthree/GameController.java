@@ -53,6 +53,16 @@ public class GameController {
         return false;
     }
 
+    static boolean isGameWonInAnyDiagonal(Board board) {
+
+        if (isGameWonInDiagonalSlopeNegative(board)
+                || isGameWonInDiagonalSlopePositive(board)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     static boolean isGameWonInColumn(Board board, int columnNumber) {
 
         BoardPiece boardPiece0 = board.boardPieces[0][columnNumber];
@@ -128,16 +138,6 @@ public class GameController {
             }
         }
         return true;
-    }
-
-    static boolean isGameWonInAnyDiagonal(Board board) {
-
-        if (isGameWonInDiagonalSlopeNegative(board)
-                || isGameWonInDiagonalSlopePositive(board)) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
 }
