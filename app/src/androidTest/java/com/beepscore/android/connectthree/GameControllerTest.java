@@ -13,11 +13,53 @@ public class GameControllerTest extends ApplicationTestCase<Application> {
         super(Application.class);
     }
 
-    public void testIsBoardFull() {
+    public void testIsBoardFullMovesEmpty() {
         Board board = new Board(3, 3);
         Game game = new Game(board, null);
         GameController gameController = new GameController(game);
 
+        // check setup
+        assertEquals(0, game.moves.size());
+
         assertFalse(gameController.isBoardFull(game));
+    }
+
+    public void testIsBoardFullAlmostfull() {
+        Board board = new Board(3, 3);
+        Game game = new Game(board, null);
+        GameController gameController = new GameController(game);
+        game.moves.add(new Move("moe", 0, 0));
+        game.moves.add(new Move("larry", 0, 1));
+        game.moves.add(new Move("moe", 0, 2));
+        game.moves.add(new Move("larry", 1, 0));
+        game.moves.add(new Move("moe", 1, 1));
+        game.moves.add(new Move("larry", 1, 2));
+        game.moves.add(new Move("moe", 2, 0));
+        game.moves.add(new Move("larry", 2, 1));
+
+        // check setup
+        assertEquals(8, game.moves.size());
+
+        assertFalse(gameController.isBoardFull(game));
+    }
+
+    public void testIsBoardFullTrue() {
+        Board board = new Board(3, 3);
+        Game game = new Game(board, null);
+        GameController gameController = new GameController(game);
+        game.moves.add(new Move("moe", 0, 0));
+        game.moves.add(new Move("larry", 0, 1));
+        game.moves.add(new Move("moe", 0, 2));
+        game.moves.add(new Move("larry", 1, 0));
+        game.moves.add(new Move("moe", 1, 1));
+        game.moves.add(new Move("larry", 1, 2));
+        game.moves.add(new Move("moe", 2, 0));
+        game.moves.add(new Move("larry", 2, 1));
+        game.moves.add(new Move("moe", 2, 2));
+
+        // check setup
+        assertEquals(9, game.moves.size());
+
+        assertTrue(gameController.isBoardFull(game));
     }
 }
