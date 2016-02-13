@@ -22,4 +22,19 @@ public class GameController {
             return true;
     }
 
+    static boolean isGameWonInRow(Board board, int rowNumber) {
+
+        BoardPiece boardPiece0 = board.boardPieces[rowNumber][0];
+        for (int columnNumber = 0; columnNumber < board.numberOfColumns; columnNumber++) {
+            BoardPiece currentBoardPiece = board.boardPieces[rowNumber][columnNumber];
+            if (currentBoardPiece == null) {
+                return false;
+            }
+            if (currentBoardPiece != boardPiece0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
