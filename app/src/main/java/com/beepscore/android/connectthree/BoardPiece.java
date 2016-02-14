@@ -1,5 +1,6 @@
 package com.beepscore.android.connectthree;
 
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 
 /**
@@ -8,11 +9,16 @@ import android.media.Image;
 public class BoardPiece {
 
     public final String boardPieceId;
-    public final Image image;
+    public final Drawable drawable;
 
     // constructor
-    public BoardPiece(String boardPieceId, Image image) {
+    public BoardPiece(String boardPieceId, Drawable drawable) {
         this.boardPieceId = boardPieceId;
-        this.image = image;
+        this.drawable = drawable;
     }
+
+    public String toString() {
+        return boardPieceId;
+    }
+
 }

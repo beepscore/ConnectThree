@@ -16,6 +16,7 @@ public class Game {
     // http://binkley.blogspot.com/2005/01/read-only-properties-in-java.html
     final Board board;
     final List<Player> players;
+    Player currentPlayer;
 
     // Chess games are recorded as a list of moves, so use it for tic-tac-toe.
     // Also can use it to see who gets to move next.
@@ -27,6 +28,11 @@ public class Game {
     public Game(Board board, List<Player> players) {
         this.board = board;
         this.players = players;
+        if ((this.players != null)
+                && (this.players.size() > 0)) {
+            // TODO: consider let caller set currentPlayer
+            this.currentPlayer = players.get(0);
+        }
     }
 
 }

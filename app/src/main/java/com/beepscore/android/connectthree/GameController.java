@@ -13,6 +13,16 @@ public class GameController {
         this.game = game;
     }
 
+    static boolean canMove(Board board, int row, int column) {
+
+            BoardPiece boardPiece = board.boardPieces[row][column];
+            if (boardPiece == null) {
+                return true;
+            } else {
+                return false;
+            }
+    }
+
     boolean isBoardFull(Game game) {
         // Use game.moves
         // This is more efficient than looping through game.board rows and columns
@@ -138,6 +148,27 @@ public class GameController {
             }
         }
         return true;
+    }
+
+    /**
+     * Add move at row, column.
+     * Assumes move is available.
+     * @param playerId
+     * @param row
+     * @param column
+     */
+    void addMove(String playerId, int row, int column) {
+        Move move = new Move(playerId, row, column);
+        game.moves.add(move);
+        game.board.boardPieces[row][column] = game.currentPlayer.boardPiece;
+    }
+
+    void toggleCurrentPlayer() {
+        if (game.currentPlayer == game.players.get(0)) {
+            game.currentPlayer = game.players.get(1);
+        } else {
+            game.currentPlayer = game.players.get(0);
+        }
     }
 
 }

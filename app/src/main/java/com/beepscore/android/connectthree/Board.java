@@ -15,6 +15,30 @@ public class Board {
     public Board(final int numberOfRows, final int numberOfColumns) {
         this.numberOfRows = numberOfRows;
         this.numberOfColumns = numberOfColumns;
-        boardPieces = new BoardPiece [numberOfRows][numberOfColumns] ;
+        boardPieces = new BoardPiece [numberOfRows][numberOfColumns];
     }
+
+    public String toString() {
+        String description = "";
+
+        for (int row = 0; row < numberOfRows; row++) {
+            for (int column = 0; column < numberOfColumns; column++) {
+
+                String boardPieceDescription;
+                if (boardPieces[row][column] == null) {
+                    boardPieceDescription = "null";
+                } else {
+                    boardPieceDescription = boardPieces[row][column].toString();
+                }
+
+                String positionDescription = "[" + Integer.toString(row) + "]["
+                        + Integer.toString(column) + "] "
+                        + boardPieceDescription
+                        + System.lineSeparator();
+                description = description + positionDescription;
+            }
+        }
+        return description;
+    }
+
 }
