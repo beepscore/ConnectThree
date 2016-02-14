@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -16,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Use Drawable. Alternatively, could use resource
     // http://stackoverflow.com/questions/9774705/setimageresource-vs-setdrawable
+    Drawable mBoardPieceDrawableBlank;
     Drawable mBoardPieceDrawableO;
     Drawable mBoardPieceDrawableX;
     GameController mGameController;
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void configureNewGame() {
+        mBoardPieceDrawableBlank = getDrawable(R.drawable.blank);
         mBoardPieceDrawableO = getDrawable(R.drawable.o);
         mBoardPieceDrawableX = getDrawable(R.drawable.x);
 
@@ -39,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
 
         Game game = new Game(board, players);
         mGameController = new GameController(game);
+
+        GridLayout boardGridLayout = (GridLayout)findViewById(R.id.boardGridLayout);
+        drawBoard(boardGridLayout, game);
     }
 
     List<Player> getConfiguredPlayers() {
@@ -51,6 +58,36 @@ public class MainActivity extends AppCompatActivity {
         Player playerLarry = new Player("Larry", boardPieceLarry);
         players.add(playerLarry);
         return players;
+    }
+
+    /**
+     * Draw board to match game current state
+     * @param gridLayout
+     * @param game
+     */
+    void drawBoard(GridLayout gridLayout, Game game) {
+        for (int row = 0; row < game.board.numberOfRows; row++) {
+            for (int column = 0; column < game.board.numberOfColumns; column++) {
+
+                // NOTE: gridLayout children indexes might appear in another order or may not be stable
+                // May need another way to map frow row, column to child index
+                int childIndex = (3 * row) + column;
+
+                View childView = gridLayout.getChildAt(childIndex);
+                ImageButton childImageButton = (ImageButton) childView;
+                if (game.board.boardPieces[row][column] == null) {
+                    childImageButton.setImageDrawable(mBoardPieceDrawableBlank);
+                    break;
+                }
+                if (game.board.boardPieces[row][column] == game.players.get(0).boardPiece) {
+                    childImageButton.setImageDrawable(game.players.get(0).boardPiece.drawable);
+                    break;
+                }
+                if (game.board.boardPieces[row][column] == game.players.get(1).boardPiece) {
+                    childImageButton.setImageDrawable(game.players.get(1).boardPiece.drawable);
+                }
+            }
+        }
     }
 
     public void onButtonClick(View view) {
