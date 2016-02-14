@@ -70,7 +70,9 @@ public class MainActivity extends AppCompatActivity {
             for (int column = 0; column < game.board.numberOfColumns; column++) {
 
                 // NOTE: gridLayout children indexes might appear in another order or may not be stable
-                // May need another way to map frow row, column to child index
+                // So this method might work fine when all images are the same (e.g. blank)
+                // but not when some images are different than others.
+                // May need another way to map frow row, column to child index.
                 int childIndex = (3 * row) + column;
 
                 View childView = gridLayout.getChildAt(childIndex);
