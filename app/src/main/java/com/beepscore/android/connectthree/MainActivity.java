@@ -69,27 +69,30 @@ public class MainActivity extends AppCompatActivity {
         for (int row = 0; row < game.board.numberOfRows; row++) {
             for (int column = 0; column < game.board.numberOfColumns; column++) {
 
-                // NOTE: gridLayout children indexes might appear in another order or may not be stable
+                // NOTE: based on logging, childIndex appears to map gridLayout children correctly.
+                // If gridLayout children order is not stable, this mapping could fail.
                 // So this method might work fine when all images are the same (e.g. blank)
                 // but not when some images are different than others.
-                // May need another way to map frow row, column to child index.
                 int childIndex = (3 * row) + column;
-
                 View childView = gridLayout.getChildAt(childIndex);
+                //Log.d("drawBoard", childView.toString());
+
                 ImageButton childImageButton = (ImageButton) childView;
                 if (game.board.boardPieces[row][column] == null) {
                     childImageButton.setImageDrawable(mBoardPieceDrawableBlank);
-                    break;
                 }
                 if (game.board.boardPieces[row][column] == game.players.get(0).boardPiece) {
                     childImageButton.setImageDrawable(game.players.get(0).boardPiece.drawable);
-                    break;
                 }
                 if (game.board.boardPieces[row][column] == game.players.get(1).boardPiece) {
                     childImageButton.setImageDrawable(game.players.get(1).boardPiece.drawable);
                 }
             }
         }
+    }
+
+    public void onClickNewGame(View view) {
+        configureNewGame();
     }
 
     public void onButtonClick(View view) {
