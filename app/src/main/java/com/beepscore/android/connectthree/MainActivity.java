@@ -95,6 +95,15 @@ public class MainActivity extends AppCompatActivity {
         configureNewGame();
     }
 
+    /**
+     * Use to test drawBoard for any game (e.g. a game with moves) not just a new game
+     * @param view
+     */
+    public void onClickDrawBoard(View view) {
+        GridLayout boardGridLayout = (GridLayout)findViewById(R.id.boardGridLayout);
+        drawBoard(boardGridLayout, mGameController.game);
+    }
+
     public void onButtonClick(View view) {
         ImageButton imageButton = (ImageButton) view;
 
