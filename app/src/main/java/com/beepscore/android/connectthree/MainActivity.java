@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
      * @param game
      */
     void drawBoard(GridLayout gridLayout, Game game) {
+        // Use MVC Model board.numberOfRows in preference to MVC View gridLayout.getRowCount()
         for (int row = 0; row < game.board.numberOfRows; row++) {
             for (int column = 0; column < game.board.numberOfColumns; column++) {
 
