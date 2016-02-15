@@ -1,7 +1,7 @@
 package com.beepscore.android.connectthree;
 
 import android.graphics.drawable.Drawable;
-import android.support.v4.util.Pair;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,9 +33,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void configureBoardPieceDrawables() {
-        mBoardPieceDrawableBlank = getDrawable(R.drawable.blank);
-        mBoardPieceDrawableO = getDrawable(R.drawable.o);
-        mBoardPieceDrawableX = getDrawable(R.drawable.x);
+        // Use ContextCompat
+        //http://stackoverflow.com/questions/29041027/android-getresources-getdrawable-deprecated-api-22
+        mBoardPieceDrawableBlank = ContextCompat.getDrawable(this, R.drawable.blank);
+        mBoardPieceDrawableO = ContextCompat.getDrawable(this, R.drawable.o);
+        mBoardPieceDrawableX = ContextCompat.getDrawable(this, R.drawable.x);
     }
 
     public void configureNewGame() {
