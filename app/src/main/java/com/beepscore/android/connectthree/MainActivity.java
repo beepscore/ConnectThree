@@ -119,8 +119,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Game is a draw", Toast.LENGTH_LONG).show();
             } else {
                 mGameController.toggleCurrentPlayer();
-                Toast.makeText(getApplicationContext(), "currentPlayer " +
-                        mGameController.game.currentPlayer.playerId, Toast.LENGTH_SHORT).show();
             }
         }
     }
