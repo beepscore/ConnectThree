@@ -28,14 +28,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        configureBoardPieceDrawables();
         configureNewGame();
     }
 
-    public void configureNewGame() {
+    public void configureBoardPieceDrawables() {
         mBoardPieceDrawableBlank = getDrawable(R.drawable.blank);
         mBoardPieceDrawableO = getDrawable(R.drawable.o);
         mBoardPieceDrawableX = getDrawable(R.drawable.x);
+    }
 
+    public void configureNewGame() {
         Board board = new Board(numberOfRows, numberOfColumns);
 
         List<Player> players = getConfiguredPlayers();
