@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     Drawable mBoardPieceDrawableBlank;
     Drawable mBoardPieceDrawableO;
     Drawable mBoardPieceDrawableX;
+    final int numberOfRows = 3;
+    final int numberOfColumns = 3;
     GameController mGameController;
 
     @Override
@@ -34,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
         mBoardPieceDrawableO = getDrawable(R.drawable.o);
         mBoardPieceDrawableX = getDrawable(R.drawable.x);
 
-        final int numberOfRows = 3;
-        final int numberOfColumns = 3;
         Board board = new Board(numberOfRows, numberOfColumns);
 
         List<Player> players = getConfiguredPlayers();
