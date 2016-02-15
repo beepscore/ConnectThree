@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
      * @param game
      */
     void drawBoard(GridLayout gridLayout, Game game) {
+        // Use dependency-injected argument game.board.numberOfRows in preference to field numberOfRows
         // Use MVC Model board.numberOfRows in preference to MVC View gridLayout.getRowCount()
         for (int row = 0; row < game.board.numberOfRows; row++) {
             for (int column = 0; column < game.board.numberOfColumns; column++) {
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 // If gridLayout children order is not stable, this mapping could fail.
                 // So this method might work fine when all images are the same (e.g. blank)
                 // but not when some images are different than others.
-                int childIndex = (3 * row) + column;
+                int childIndex = (game.board.numberOfColumns * row) + column;
                 View childView = gridLayout.getChildAt(childIndex);
                 //Log.d("drawBoard", childView.toString());
 
