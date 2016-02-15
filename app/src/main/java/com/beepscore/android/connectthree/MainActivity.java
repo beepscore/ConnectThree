@@ -81,12 +81,9 @@ public class MainActivity extends AppCompatActivity {
                 ImageButton childImageButton = (ImageButton) childView;
                 if (game.board.boardPieces[row][column] == null) {
                     childImageButton.setImageDrawable(mBoardPieceDrawableBlank);
-                }
-                if (game.board.boardPieces[row][column] == game.players.get(0).boardPiece) {
-                    childImageButton.setImageDrawable(game.players.get(0).boardPiece.drawable);
-                }
-                if (game.board.boardPieces[row][column] == game.players.get(1).boardPiece) {
-                    childImageButton.setImageDrawable(game.players.get(1).boardPiece.drawable);
+                } else {
+                    // NOTE: boardPiece.drawable could be null
+                    childImageButton.setImageDrawable(game.board.boardPieces[row][column].drawable);
                 }
             }
         }
